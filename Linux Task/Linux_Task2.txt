@@ -1,0 +1,57 @@
+root@ip-172-31-6-182:/home/ubuntu# mkdir shellscript
+root@ip-172-31-6-182:/home/ubuntu# chmod 777 shellscript
+root@ip-172-31-6-182:/home/ubuntu# cd shellscript
+root@ip-172-31-6-182:/home/ubuntu/shellscript# vi shellscript1.sh
+root@ip-172-31-6-182:/home/ubuntu/shellscript# chmod 755 shellscript1.sh
+root@ip-172-31-6-182:/home/ubuntu/shellscript# ./shellscript1.sh
+Created file1.txt
+Created file2.txt
+Created file3.txt
+Created file4.txt
+Created file5.txt
+Created file6.txt
+Created file7.txt
+Created file8.txt
+Created file9.txt
+Created file10.txt
+Created file11.txt
+Created file12.txt
+Created file13.txt
+Created file14.txt
+Created file15.txt
+Created file16.txt
+Created file17.txt
+Created file18.txt
+Created file19.txt
+Created file20.txt
+Renamed file1.txt to file1.yml
+Renamed file2.txt to file2.yml
+Renamed file3.txt to file3.yml
+Renamed file4.txt to file4.yml
+Renamed file5.txt to file5.yml
+
+Top 5 latest created files:
+84
+file20.txt
+file19.txt
+file18.txt
+file17.txt
+root@ip-172-31-6-182:/home/ubuntu/shellscript# cat shellscript1.sh
+#!/bin/bash
+
+# Step 1: Create 20 .txt files
+for (( i=1; i<=20; i++ )); do
+    touch "file${i}.txt"
+    echo "This is file ${i}" > "file${i}.txt"
+    echo "Created file${i}.txt"
+done
+
+# Step 2: Rename the first 5 files to .yml
+for (( i=1; i<=5; i++ )); do
+    mv "file${i}.txt" "file${i}.yml"
+    echo "Renamed file${i}.txt to file${i}.yml"
+done
+
+# Step 3: Print the latest created top 5 files
+echo -e "\nTop 5 latest created files:"
+ls -lt | awk 'NR <= 5 {print $NF}'
